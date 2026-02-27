@@ -29,4 +29,12 @@ public class PlayerListener implements Listener {
     public void onQuit(PlayerQuitEvent event) {
         plugin.getPlayerDataManager().remove(event.getPlayer());
     }
+
+    @EventHandler
+    public void onMove(org.bukkit.event.player.PlayerMoveEvent event) {
+        PlayerData data = plugin.getPlayerDataManager().get(event.getPlayer());
+        if (data != null) {
+            data.getChecks().forEach(check -> check.onMove(event));
+        }
+    }
 }

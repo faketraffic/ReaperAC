@@ -41,6 +41,10 @@ public abstract class Check {
         flag("");
     }
 
+    public void onMove(org.bukkit.event.player.PlayerMoveEvent event) {
+        // To be overridden by implementations
+    }
+
     public void setViolations(int violations) {
         this.violations = Math.max(0, violations);
     }
