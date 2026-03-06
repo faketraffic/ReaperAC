@@ -1,5 +1,6 @@
 package gay.tharmsy.reaperAC;
 
+import gay.tharmsy.reaperAC.command.ReaperCommand;
 import gay.tharmsy.reaperAC.data.PlayerDataManager;
 import gay.tharmsy.reaperAC.listener.PlayerListener;
 import gay.tharmsy.reaperAC.manager.AlertManager;
@@ -18,6 +19,11 @@ public final class ReaperAC extends JavaPlugin {
         alertManager = new AlertManager(this);
 
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
+
+        ReaperCommand command = new ReaperCommand(this);
+        getCommand("reaperac").setExecutor(command);
+        getCommand("alerts").setExecutor(command);
+        getCommand("verbose").setExecutor(command);
     }
 
     @Override

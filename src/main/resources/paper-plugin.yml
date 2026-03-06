@@ -2,3 +2,12 @@ name: ReaperAC
 version: '1.0'
 main: gay.tharmsy.reaperAC.ReaperAC
 api-version: '1.21'
+commands:
+  reaperac:
+    description: ReaperAC main command
+    aliases:
+      - reaper-ac
+  alerts:
+    description: Toggle ReaperAC alerts
+  verbose:
+    description: Toggle ReaperAC verbose

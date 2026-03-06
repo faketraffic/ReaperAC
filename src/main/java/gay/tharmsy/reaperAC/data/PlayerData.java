@@ -12,13 +12,16 @@ public class PlayerData {
     private final UUID uuid;
     private final Player player;
     private final List<Check> checks;
+    private final gay.tharmsy.reaperAC.util.PredictionEngine predictionEngine;
 
     private boolean alertsEnabled = true;
+    private boolean verboseEnabled = false;
 
     public PlayerData(Player player) {
         this.uuid = player.getUniqueId();
         this.player = player;
         this.checks = CheckManager.loadChecks(this);
+        this.predictionEngine = new gay.tharmsy.reaperAC.util.PredictionEngine(this);
     }
 
     public UUID getUuid() {
@@ -39,5 +42,17 @@ public class PlayerData {
 
     public void setAlertsEnabled(boolean alertsEnabled) {
         this.alertsEnabled = alertsEnabled;
+    }
+
+    public boolean isVerboseEnabled() {
+        return verboseEnabled;
+    }
+
+    public void setVerboseEnabled(boolean verboseEnabled) {
+        this.verboseEnabled = verboseEnabled;
+    }
+
+    public gay.tharmsy.reaperAC.util.PredictionEngine getPredictionEngine() {
+        return predictionEngine;
     }
 }
