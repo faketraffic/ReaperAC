@@ -40,6 +40,23 @@ public class AlertManager {
         }
     }
 
+    public void handleVerbose(PlayerData data, Check check, String info) {
+        String alertMessage = CC.PREFIX + "&b[Verbose] &7" + data.getPlayer().getName() + " &7failed &e" +
+                check.getName() + " &7(&e" + check.getType() + "&7)";
+
+        if (info != null && !info.isEmpty()) {
+            alertMessage += " &7[&f" + info + "&7]";
+        }
+
+        String formatted = CC.translate(alertMessage);
+
+        for (PlayerData pData : plugin.getPlayerDataManager().getAll()) {
+            if (pData.isVerboseEnabled() && pData.getPlayer().hasPermission("reaperac.verbose")) {
+                pData.getPlayer().sendMessage(formatted);
+            }
+        }
+    }
+
     private void punish(PlayerData data, Check check) {
         Bukkit.getScheduler().runTask(plugin, () -> {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kick " + data.getPlayer().getName() + " You have been kicked by ReaperAC for " + check.getName());

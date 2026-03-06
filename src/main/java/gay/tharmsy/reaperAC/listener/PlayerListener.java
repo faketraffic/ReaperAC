@@ -5,6 +5,7 @@ import gay.tharmsy.reaperAC.data.PlayerData;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
@@ -35,6 +36,17 @@ public class PlayerListener implements Listener {
         PlayerData data = plugin.getPlayerDataManager().get(event.getPlayer());
         if (data != null) {
             data.getChecks().forEach(check -> check.onMove(event));
+        }
+    }
+
+    @EventHandler
+    public void onAttack(EntityDamageByEntityEvent event) {
+        if (event.getDamager() instanceof Player) {
+            Player player = (Player) event.getDamager();
+            PlayerData data = plugin.getPlayerDataManager().get(player);
+            if (data != null) {
+                data.getChecks().forEach(check -> check.onAttack(event));
+            }
         }
     }
 }

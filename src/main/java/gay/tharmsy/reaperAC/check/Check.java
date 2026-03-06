@@ -41,7 +41,15 @@ public abstract class Check {
         flag("");
     }
 
+    public void debug(String info) {
+        ReaperAC.getInstance().getAlertManager().handleVerbose(data, this, info);
+    }
+
     public void onMove(org.bukkit.event.player.PlayerMoveEvent event) {
+        // To be overridden by implementations
+    }
+
+    public void onAttack(org.bukkit.event.entity.EntityDamageByEntityEvent event) {
         // To be overridden by implementations
     }
 
